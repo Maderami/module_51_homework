@@ -1,0 +1,28 @@
+{
+  "name": "module_51_homework/core",
+  "description": "Работа с вырезанием части кода итерациями",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ярослав Стадник",
+      "email": "jastadnik@yandex.ru"
+    }
+  ],
+  "require": {
+    "php": "^8.4.10",
+    "ext-pdo": "*",
+    "twig/twig": "^3.21",
+    "ext-gd": "*",
+    "ext-dom": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "core/",
+      "Core\\Configs\\": "core/configs",
+      "Core\\Models\\": "core/models",
+      "Core\\Controllers\\": "core/controllers",
+      "Core\\Lib\\": "core/lib"
+    }
+  }
+}
