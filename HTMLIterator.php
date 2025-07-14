@@ -1,7 +1,4 @@
 <?php
-
-namespace Core\lib;
-
 use ArrayIterator;
 use DOMDocument;
 use DOMXPath;
@@ -14,7 +11,7 @@ class HTMLIterator implements Iterator
     private $metaTags;
     private $document;
 
-    public function __construct(string $html)
+    public function __construct($html)
     {
         $this->document = new DOMDocument();
         @$this->document->loadHTML($html);

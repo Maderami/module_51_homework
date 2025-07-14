@@ -1,14 +1,5 @@
 <?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-use Core\Configs\Config;
-use Core\Lib\Router;
-
-
-$twig = new Config()->getConfig();
-
-
+require_once './HTMLIterator.php';
 // Маршрутизация
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $GLOBALS['request'] = $request;
@@ -17,15 +8,30 @@ $GLOBALS['request'] = $request;
 switch ($request) {
     case '/':
     case '/home':
-        $routeMain = new Router('MainController', 'index', 'HTML');
-        $routeMain->run($twig);
+        $resultMeta = [];
+        // Создание нового объекта DOMDocument
+        $htmlData = file_get_contents('./remover.html');
+
+        $iterator = new HTMLIterator($htmlData);
+        foreach ($iterator as $meta) {
+            $resultMeta[$meta['type']] = $meta['content'];
+        }
+
+        echo $resultMeta['title'] . '<br>';
+        echo $resultMeta['description'] . '<br>';
+        echo $resultMeta['keywords'] . '<br>';
         break;
     case '/remove':
-        $routeMain = new Router('MainController', 'removerTags', 'HTML');
-        $routeMain->run($twig);
+        // Создание нового объекта DOMDocument
+        $htmlData = file_get_contents('./remover.html');
+        $htmlModel = new DOMDocument();
+
+        $remover = new HTMLIterator($htmlData);
+        $cleanedHtml = $remover->removeMetaTags();
+        echo $cleanedHtml;
         break;
     default:
         header('HTTP/1.0 404 Not Found');
-        echo $twig->render('404.twig');
+        echo '404';
         break;
 }

@@ -1,15 +1,3 @@
-<?php
-
-namespace Core\models;
-
-use Dom\HTMLDocument;
-
-class HTMLModel
-{
-    private $htmlData;
-
-    public function __construct(){
-        $this->htmlData = <<<HTML
             <head>
             <base href="/templates/modex/">
             	            <meta charset="UTF-8">
@@ -432,10 +420,3 @@ class HTMLModel
              <script src="assets/js/commerce.js"></script>
              <script src="assets/js/e-commerce_product.js"></script>
              </body> 
-        HTML;
-    }
-    public function getHTML()
-    {
-        return $this->htmlData;
-    }
-}
