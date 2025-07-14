@@ -1,4 +1,3 @@
-# module_50_homework - Галерея изображений
 
 ## Задание
 Дан html-код, с помощью итераций вырежьте из него мета теги (title description, keywords).
